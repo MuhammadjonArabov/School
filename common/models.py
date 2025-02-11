@@ -46,3 +46,16 @@ class News(BaseModel):
 
     def __str__(self):
         return f"{self.title}"
+
+class Comment(BaseModel):
+    ''' Comment model for news '''
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_user')
+    new = models.ForeignKey(News, on_delete=models.CASCADE, related_name='comment_new')
+    text = models.TextField()
+
+    def __str__(self):
+        return f"{self.user} | {self.new}"
+
+
+
+
