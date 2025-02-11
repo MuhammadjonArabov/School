@@ -28,10 +28,21 @@ class ClassName(BaseModel):
         return f"{self.name}"
 
 class Teacher(BaseModel):
-    ''' teachers working at the school '''
+    ''' Teachers working at the school '''
     full_name = models.CharField(max_length=255)
     position = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='teacher_image')
 
     def __str__(self):
         return f"{self.full_name} | {self.position}"
 
+class News(BaseModel):
+    ''' School in news '''
+    title = models.CharField(max_length=550)
+    description = models.TextField()
+    image = models.ImageField(upload_to='news_image', null=True, blank=True)
+    views = models.ManyToManyField(User, related_name='view_count', blank=True, null=True)
+    likes = models.ManyToManyField(User, related_name='liked_news', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title}"
