@@ -1,4 +1,3 @@
-from django.contrib.admin.models import CHANGE
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -15,14 +14,6 @@ class BaseModel(models.Model):
 
 class Subjects(BaseModel):
     ''' Subjects names in school '''
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return f"{self.name}"
-
-
-class ClassName(BaseModel):
-    ''' class name in school '''
     name = models.CharField(max_length=255)
 
     def __str__(self):
