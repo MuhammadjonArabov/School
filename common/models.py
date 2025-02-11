@@ -1,3 +1,4 @@
+from django.contrib.admin.models import CHANGE
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -117,6 +118,21 @@ class ActiveStudent(BaseModel):
     class_name = models.CharField(max_length=20)
     description = models.CharField(max_length=550)
     image = models.ImageField(upload_to='active_student_img')
+
+    def __str__(self):
+        return f"{self.full_name}"
+
+
+class FaceOfSchool(BaseModel):
+    "Face of school "
+    CHOICES = [
+        ("TEACHER", "O'qtuvchi"),
+        ("STUDENT", "O'quvchi")
+    ]
+    full_name = models.CharField(max_length=225)
+    image = models.ImageField(upload_to='face_image')
+    description = models.CharField(max_length=550)
+    choices = models.CharField(choices=CHOICES, max_length=20, default='TEACHER')
 
     def __str__(self):
         return f"{self.full_name}"
