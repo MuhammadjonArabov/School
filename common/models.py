@@ -75,13 +75,12 @@ class Test(BaseModel):
         ('11-CLASS', '11-sinf')
     ]
     subjects = models.ForeignKey(Subjects, on_delete=models.CASCADE, related_name='test_objects')
-    title = models.CharField(max_length=550)
-    start_dat = models.DateTimeField(default=None, null=True, blank=True)
-    end_data = models.DateTimeField(default=None, null=True, blank=True)
-    class_choices = models.CharField(choices=CLASS_CHOICES, max_length=20, default='5-CLASS')
+    start_date = models.DateTimeField(default=None, null=True, blank=True)
+    end_date = models.DateTimeField(default=None, null=True, blank=True)
+    class_choices = models.CharField(choices=CLASS_CHOICES, max_length=10, default='5-CLASS')
 
     def __str__(self):
-        return f"{self.title} | {self.class_choices}"
+        return f"{self.class_choices}"
 
 
 class Questions(BaseModel):
@@ -92,8 +91,9 @@ class Questions(BaseModel):
         ('C', 'c'),
         ('D', 'd')
     ]
+    question_text = models.TextField()
     test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='question_test')
-    true_answer = models.CharField(choices=TRUE_ANSWER_CHOICES, max_length=5, default='A')
+    true_answer = models.CharField(choices=TRUE_ANSWER_CHOICES, max_length=2, default='A')
     variant_a = models.CharField(max_length=255)
     variant_b = models.CharField(max_length=255)
     variant_c = models.CharField(max_length=255)
@@ -115,7 +115,7 @@ class ActiveStudent(BaseModel):
 
 
 class FaceOfSchool(BaseModel):
-    "Face of school "
+    ''' Face of school  '''
     CHOICES = [
         ("TEACHER", "O'qtuvchi"),
         ("STUDENT", "O'quvchi")
