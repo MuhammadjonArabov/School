@@ -16,7 +16,7 @@ class TeacherAdmin(admin.ModelAdmin):
 
 @admin.register(models.News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'views', 'likes')
+    list_display = ('id', 'title')
     search_fields = ('title', 'description')
 
 
