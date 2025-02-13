@@ -12,68 +12,100 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             display: flex;
             flex-direction: column;
+            align-items: center; /* Sahifani markazga olish */
             min-height: 100vh;
-            padding: 0 100px; /* Har doim ikki yonida 100px bo'lishi uchun */
+            background-color: #f4f4f4; /* Agar rasm kichik bo‘lsa, fon rangi */
         }
-        .container {
+
+        .wrapper {
             width: 100%;
-            max-width: 1140px;
+            max-width: 1140px; /* Navbar, footer va fon rasmi kengligi bir xil */
             margin: 0 auto;
             flex: 1;
-            padding-top: 80px; /* Navbar balandligini hisobga olish */
         }
+
         .navbar {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
             background-color: rgb(115, 184, 233);
-            padding: 20px 100px;
+            padding: 20px 50px;
             box-shadow: 0 10px 10px rgba(59, 49, 49, 1);
             position: fixed;
             top: 0;
-            width: calc(100% - 200px); /* 100% dan ikki tomon 100px olib tashlandi */
-            left: 100px;
+            width: 100%;
+            max-width: 1140px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
         }
+
         .nav-link {
-            margin-right: 80px;
             text-decoration: none;
             color: black;
+            white-space: nowrap;
         }
+
         .nav-link:hover {
             color: rgb(243, 60, 5);
         }
+
         .nav-item {
             list-style: none;
+            display: inline-block;
+            margin-left: 50px;
         }
+
+        .background-container {
+            width: 100%;
+            height: 100vh;
+            background: url("{% static 'common/image/images.jpeg' %}") no-repeat center center/cover;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
         .footer {
+            width: 100%;
+            max-width: 1140px;
             background-color: rgb(59, 49, 49);
             color: white;
             text-align: center;
             padding: 15px 0;
-            position: relative;
-            width: 100%;
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Activ o'quvchilar</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">O'qtuvchilar</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Fahriylar</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Test</a></li>
-    </nav>
+    <div class="wrapper">
+        <nav class="navbar">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Activ o'quvchilar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">O'qtuvchilar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Fahriylar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Test</a></li>
+        </nav>
 
-    <div class="container">
-        {% block content %}
-        {% endblock content %}
+        <div class="background-container"></div> <!-- Fon rasmi joylashgan qismi -->
+
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2025 33-Maktab. Barcha huquqlar himoyalangan.</p>
+        </footer>
     </div>
-
-    <footer class="footer">
-        <p>&copy; 2025 33-Maktab. Barcha huquqlar himoyalangan.</p>
-    </footer>
 </body>
 </html>
