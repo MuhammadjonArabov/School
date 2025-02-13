@@ -10,14 +10,32 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 0 100px; /* Har doim ikki yonida 100px bo'lishi uchun */
+        }
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            flex: 1;
+            padding-top: 80px; /* Navbar balandligini hisobga olish */
         }
         .navbar {
             display: flex;
-            margin: 0 100px 0 100px;
             justify-content: end;
             background-color: rgb(115, 184, 233);
-            padding: 30px 0;
+            padding: 20px 100px;
             box-shadow: 0 10px 10px rgba(59, 49, 49, 1);
+            position: fixed;
+            top: 0;
+            width: calc(100% - 200px); /* 100% dan ikki tomon 100px olib tashlandi */
+            left: 100px;
+            z-index: 1000;
         }
         .nav-link {
             margin-right: 80px;
@@ -30,33 +48,32 @@
         .nav-item {
             list-style: none;
         }
+        .footer {
+            background-color: rgb(59, 49, 49);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <nav class="main-nav">
-        <div class="navbar">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Activ o'quvchilar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">O'qtuvchilar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Fahriylar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Test</a>
-            </li>
-        </div>
+    <nav class="navbar">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Activ o'quvchilar</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">O'qtuvchilar</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Fahriylar</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Test</a></li>
     </nav>
 
     <div class="container">
         {% block content %}
         {% endblock content %}
     </div>
-    
+
+    <footer class="footer">
+        <p>&copy; 2025 33-Maktab. Barcha huquqlar himoyalangan.</p>
+    </footer>
 </body>
 </html>
