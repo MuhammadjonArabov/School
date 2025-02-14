@@ -12,22 +12,23 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+    
         body {
             display: flex;
             flex-direction: column;
             align-items: center; /* Sahifani markazga olish */
             min-height: 100vh;
-            background-color: #f4f4f4; /* Agar rasm kichik bo‘lsa, fon rangi */
+            background-color: #f4f4f4; 
         }
-
+    
         .wrapper {
             width: 100%;
-            max-width: 1140px; /* Navbar, footer va fon rasmi kengligi bir xil */
+            max-width: 1140px; 
             margin: 0 auto;
             flex: 1;
+            padding-top: 80px; /* Navbar balandligiga mos padding */
         }
-
+    
         .navbar {
             display: flex;
             justify-content: flex-end;
@@ -43,38 +44,31 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
+            height: 60px; /* Navbar balandligi */
+            align-items: center; /* Ichki elementlarni o‘rta markazga olish */
         }
-
+    
         .nav-link {
             text-decoration: none;
             color: black;
             white-space: nowrap;
         }
-
+    
         .nav-link:hover {
             color: rgb(243, 60, 5);
         }
-
+    
         .nav-item {
             list-style: none;
             display: inline-block;
             margin-left: 50px;
         }
-
-        .background-container {
-            width: 100%;
-            height: 100vh;
-            background: url("{% static 'common/image/images.jpeg' %}") no-repeat center center/cover;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
+    
         .container {
             padding: 20px;
             text-align: center;
         }
-
+    
         .footer {
             width: 100%;
             max-width: 1140px;
@@ -84,19 +78,34 @@
             padding: 15px 0;
             margin-top: auto;
         }
+    
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: center;
+                padding: 15px 20px;
+                height: auto;
+            }
+    
+            .wrapper {
+                padding-top: 70px;
+            }
+    
+            .nav-item {
+                margin-left: 20px;
+            }
+        }
     </style>
+    
 </head>
 <body>
     <div class="wrapper">
         <nav class="navbar">
-            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Activ o'quvchilar</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'main' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'active_student_list' %}">Activ o'quvchilar</a></li>
             <li class="nav-item"><a class="nav-link" href="#">O'qtuvchilar</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Fahriylar</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Test</a></li>
         </nav>
-
-        <div class="background-container"></div> <!-- Fon rasmi joylashgan qismi -->
 
         <div class="container">
             {% block content %}
