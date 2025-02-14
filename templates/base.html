@@ -12,95 +12,99 @@
             padding: 0;
             box-sizing: border-box;
         }
-    
-        body {
+
+        html, body {
+            height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Sahifani markazga olish */
-            min-height: 100vh;
-            background-color: #f4f4f4; 
         }
-    
+
         .wrapper {
-            width: 100%;
-            max-width: 1140px; 
-            margin: 0 auto;
             flex: 1;
-            padding-top: 80px; /* Navbar balandligiga mos padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            /* max-width: 1140px; */
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-    
+
         .navbar {
             display: flex;
             justify-content: flex-end;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 50px;
             background-color: rgb(115, 184, 233);
             padding: 20px 50px;
             box-shadow: 0 10px 10px rgba(59, 49, 49, 1);
             position: fixed;
             top: 0;
             width: 100%;
-            max-width: 1140px;
+            /* max-width: 1140px;   */
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            height: 60px; /* Navbar balandligi */
-            align-items: center; /* Ichki elementlarni o‘rta markazga olish */
+            height: 70px;
+            align-items: center;
         }
-    
+
+
         .nav-link {
             text-decoration: none;
             color: black;
             white-space: nowrap;
         }
-    
+
         .nav-link:hover {
             color: rgb(243, 60, 5);
         }
-    
+
         .nav-item {
             list-style: none;
             display: inline-block;
             margin-left: 50px;
         }
-    
+
         .container {
+            flex: 1;
             padding: 20px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-    
+
         .footer {
-            width: 100%;
-            max-width: 1140px;
             background-color: rgb(59, 49, 49);
             color: white;
             text-align: center;
             padding: 15px 0;
-            margin-top: auto;
+            width: 100%;
         }
-    
+
         @media (max-width: 768px) {
             .navbar {
                 justify-content: center;
                 padding: 15px 20px;
                 height: auto;
             }
-    
+
             .wrapper {
                 padding-top: 70px;
             }
-    
+
             .nav-item {
                 margin-left: 20px;
             }
         }
     </style>
-    
 </head>
 <body>
     <div class="wrapper">
         <nav class="navbar">
-            <li class="nav-item"><a class="nav-link" href="{% url 'main' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'background' %}">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'active_student_list' %}">Activ o'quvchilar</a></li>
             <li class="nav-item"><a class="nav-link" href="#">O'qtuvchilar</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Fahriylar</a></li>

@@ -107,7 +107,7 @@ class ActiveStudent(BaseModel):
     ''' Active students dict '''
     full_name = models.CharField(max_length=255)
     class_name = models.CharField(max_length=20)
-    description = models.CharField(max_length=550)
+    description = models.TextField()
     image = models.ImageField(upload_to='active_student_img')
 
     def __str__(self):
@@ -127,3 +127,6 @@ class FaceOfSchool(BaseModel):
 
     def __str__(self):
         return f"{self.full_name}"
+
+class FonImage(BaseModel):
+    image = models.ImageField(upload_to='fon_images')

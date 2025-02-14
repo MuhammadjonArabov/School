@@ -62,3 +62,6 @@ class FaceOfSchoolAdmin(admin.ModelAdmin):
     list_display = ('id', 'full_name', 'image', 'choices')
     list_filter = ('choices',)
 
+@admin.register(models.FonImage)
+class FonImageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'image')

@@ -6,5 +6,8 @@ def main(request):
 
 def active_student_list(request):
     students = models.ActiveStudent.objects.all()
-    context = {'students': students}
-    return render(request, 'active_student.html', context)
+    return render(request, 'active_student.html', {'students': students})
+
+def background_view(request):
+    images = models.FonImage.objects.all()  
+    return render(request, 'background.html', {'images': images})
