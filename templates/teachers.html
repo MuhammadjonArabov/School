@@ -10,7 +10,7 @@
         font-family: Arial, sans-serif;
     }
 
-    .student-container {
+    .teacher-container {
         padding-top: 20px;
         display: flex;
         flex-wrap: wrap;
@@ -19,7 +19,7 @@
         padding: 50px;
     }
 
-    .student-card {
+    .teacher-card {
         background: #fff;
         border-radius: 10px;
         box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.1);
@@ -29,65 +29,57 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .student-card:hover {
+    .teacher-card:hover {
         transform: translateY(-5px);
         box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .student-image {
+    .teacher-image {
         width: 100%;
         height: 290px;
         overflow: hidden;
     }
 
-    .student-image img {
+    .teacher-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-bottom: 2px solid #007bff;
     }
 
-    .student-info {
+    .teacher-info {
         padding: 15px;
     }
 
-    .student-info h3 {
+    .teacher-info h3 {
         color: #333;
         font-size: 20px;
         margin-bottom: 5px;
     }
 
-    .student-info p {
+    .teacher-info p {
         color: #555;
         font-size: 16px;
         font-weight: bold;
     }
 
-    .student-info h6 {
-        color: #141212;
-        font-size: 14px;
-        margin-top: 10px;
-    }
-
     @media (max-width: 768px) {
-        .student-container {
+        .teacher-container {
             flex-direction: column;
             align-items: center;
         }
     }
 </style>
 
-
-<div class="student-container">
-    {% for student in students %}
-    <div class="student-card">
-        <div class="student-image">
-            <img src="{{ student.image.url }}" alt="{{ student.full_name }}">
+<div class="teacher-container">
+    {% for teacher in teachers %}
+    <div class="teacher-card">
+        <div class="teacher-image">
+            <img src="{{ teacher.image.url }}" alt="{{ teacher.full_name }}">
         </div>
-        <div class="student-info">
-            <h3>{{ student.full_name }}</h3>
-            <p>{{ student.class_name }}</p>
-            <h6>{{ student.description }}</h6>
+        <div class="teacher-info">
+            <h3>{{ teacher.full_name }}</h3>
+            <p>{{ teacher.position }}</p>
         </div>
     </div>
     {% endfor %}

@@ -11,3 +11,7 @@ def active_student_list(request):
 def background_view(request):
     images = models.FonImage.objects.all()  
     return render(request, 'background.html', {'images': images})
+
+def teachers_list(request):
+    teachers = models.Teacher.objects.all()
+    return render(request, 'teachers.html', {'teachers': teachers})
