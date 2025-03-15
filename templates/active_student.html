@@ -27,6 +27,7 @@
         width: 280px;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
     }
 
     .student-card:hover {
@@ -49,6 +50,7 @@
 
     .student-info {
         padding: 15px;
+        position: relative;
     }
 
     .student-info h3 {
@@ -63,10 +65,41 @@
         font-weight: bold;
     }
 
+    /* Description 4 qator sig‘ishi uchun */
     .student-info h6 {
         color: #141212;
         font-size: 14px;
         margin-top: 10px;
+        height: 4.8em; /* 4 qatordan oshsa kesiladi */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        cursor: pointer;
+    }
+
+    /* Sichqoncha ustida bo‘lsa, to‘liq matn pastda chiqadi */
+    .full-description {
+        visibility: hidden;
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        text-align: left;
+        padding: 10px;
+        border-radius: 5px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -70px; /* Matn pastda ochilishi uchun */
+        z-index: 10;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    /* Sichqoncha description ustida bo‘lsa, to‘liq matn ko‘rinadi */
+    .student-info h6:hover + .full-description {
+        visibility: visible;
+        opacity: 1;
     }
 
     @media (max-width: 768px) {
@@ -76,7 +109,6 @@
         }
     }
 </style>
-
 
 <div class="student-container">
     {% for student in students %}
@@ -88,6 +120,7 @@
             <h3>{{ student.full_name }}</h3>
             <p>{{ student.class_name }}</p>
             <h6>{{ student.description }}</h6>
+            <div class="full-description">{{ student.description }}</div>
         </div>
     </div>
     {% endfor %}

@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Navbar ostida filtr tugmalarini joylashtirish */
+    .filter-buttons {
+        text-align: center;
+        margin-top: 90px; /* Navbar ostida chiqishi uchun */
+        margin-bottom: 20px;
+    }
+
+    .filter-buttons button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .filter-buttons button:hover {
+        background: #0056b3;
+    }
+
+    /* Kartochkalar joylashuvi */
+    .face-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .face-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 280px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .face-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .face-image {
+        width: 100%;
+        height: 290px;
+        overflow: hidden;
+    }
+
+    .face-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-bottom: 2px solid #007bff;
+    }
+
+    .face-info {
+        padding: 15px;
+        position: relative;
+    }
+
+    .face-info h3 {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .face-info p {
+        color: #555;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Description qismini 4 qatorda cheklash */
+    .face-info h6 {
+        color: #141212;
+        font-size: 14px;
+        margin-top: 10px;
+        height: 4.8em; /* 4 ta qator sig‘ishi uchun */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        cursor: pointer;
+    }
+
+    /* To‘liq matn pastda ochilishi */
+    .full-description {
+        visibility: hidden;
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        text-align: left;
+        padding: 10px;
+        border-radius: 5px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -80px; /* Matn pastda chiqishi uchun */
+        z-index: 10;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    /* Sichqoncha ustida bo‘lsa, to‘liq matn chiqadi */
+    .face-info h6:hover + .full-description {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+        .face-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+
+<!-- FILTER TUGMALARI -->
+<div class="filter-buttons">
+    <button onclick="filterFaces('all')">Barchasi</button>
+    <button onclick="filterFaces('TEACHER')">O‘qituvchilar</button>
+    <button onclick="filterFaces('STUDENT')">O‘quvchilar</button>
+</div>
+
+<!-- MAKTAB FAHRIYLARI RO'YXATI -->
+<div class="face-container">
+    {% for face in faces %}
+    <div class="face-card" data-category="{{ face.choices }}">
+        <div class="face-image">
+            <img src="{{ face.image.url }}" alt="{{ face.full_name }}">
+        </div>
+        <div class="face-info">
+            <h3>{{ face.full_name }}</h3>
+            <p>{{ face.get_choices_display }}</p>
+            <h6>{{ face.description }}</h6>
+            <div class="full-description">{{ face.description }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- FILTER FUNCTION JAVASCRIPTDA -->
+<script>
+    function filterFaces(category) {
+        let cards = document.querySelectorAll(".face-card");
+        cards.forEach(card => {
+            if (category === "all" || card.getAttribute("data-category") === category) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+</script>
+
+{% endblock content %}

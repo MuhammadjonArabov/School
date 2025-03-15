@@ -15,3 +15,7 @@ def background_view(request):
 def teachers_list(request):
     teachers = models.Teacher.objects.all()
     return render(request, 'teachers.html', {'teachers': teachers})
+
+def faces_of_school(request):
+    faces = models.FaceOfSchool.objects.all()
+    return render(request, 'faces_of_school.html', {'faces': faces})
